@@ -7,7 +7,7 @@ class Index(APIView):
     def get(self,request):
         return Response(
             {
-                'data':"OK"
+                'data':"OKK"
             },
             status=status.HTTP_202_ACCEPTED
         )
