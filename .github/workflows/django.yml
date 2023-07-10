@@ -1,0 +1,55 @@
+name: Deploy to EC2 - api.nivaaran.live
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        id: step1
+
+      - name: Install dependencies (if any)
+        run: echo "No Dependencies to Install"
+        id: step2
+        # Add steps to install dependencies if required
+  
+  
+      - name: Zip repository
+        id: step3
+        run: zip -r ${{ github.sha }}.zip . -x ".git/*" ".github/*"
+#         run: echo "File Zipped"
+  
+      - name: Transfer zip file to EC2
+        if: steps.step3.outcome == 'success'
+#         run: echo "Transfer Success"
+        id: step4
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.AWS_EC2_IP }}
+          username: ${{ secrets.AWS_EC2_USERNAME }}
+          password: ${{ secrets.AWS_EC2_PASSWORD }}
+          source: ./${{ github.sha }}.zip
+          target: /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip
+
+      - name: SSH into EC2 and unzip
+        uses: appleboy/ssh-action@master
+        if: steps.step4.outcome == 'success'
+        with:
+          host: ${{ secrets.AWS_EC2_IP }}
+          username: ${{ secrets.AWS_EC2_USERNAME }}
+          password: ${{ secrets.AWS_EC2_PASSWORD }}
+          script: |
+            cd /home/ubuntu/sites/nivaaran-api/backend
+            unzip -o /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip/${{ github.sha }}.zip -d /home/${{ secrets.AWS_EC2_USERNAME }}/sites/nivaaran-api/backend
+            
+            echo "Success!"
+            sudo systemctl restart nivaaran
+#           script: |
+#             echo "SSH Connection Successfull"
+#             # Additional commands if needed
