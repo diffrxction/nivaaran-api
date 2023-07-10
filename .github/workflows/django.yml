@@ -47,7 +47,10 @@ jobs:
           script: |
             cd /home/ubuntu/sites/nivaaran-api/backend
             unzip -o /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip/${{ github.sha }}.zip -d /home/${{ secrets.AWS_EC2_USERNAME }}/sites/nivaaran-api/backend
-            
+            cd /home/ubuntu/sites/nivaaran-api/
+            source env/bin/activate
+            cd backend
+            pip install -r requirements.txt
             echo "Success!"
             sudo systemctl restart nivaaran
 #           script: |
