@@ -1,1 +1,10 @@
-[{"model": "nivaaranapp.mlmodels", "pk": 1, "fields": {"type": "violence", "file": "models/uploads/violence.pt"}}]
+[
+    {
+        "model": "nivaaranapp.mlmodels",
+        "pk": 2,
+        "fields": {
+            "type": "violence",
+            "file": "models/uploads/violence.pt"
+        }
+    }
+]
