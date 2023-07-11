@@ -1,6 +1,6 @@
 
 # Team Nivaaran Backend Documentation
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/diffrxction/nivaaran-api/blob/dev/media/github/banners/banner.png?raw=true)
 
 ## Description
 
