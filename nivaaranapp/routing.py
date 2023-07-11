@@ -5,5 +5,6 @@ from .consumers import DetectionWebSocket
 
 routes = URLRouter([
     path("ws/", DetectionWebSocket.as_asgi()),
+    # path("views/")
     # path("chat/", PublicChatConsumer.as_asgi()),
 ])
