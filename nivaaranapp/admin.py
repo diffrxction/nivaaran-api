@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from .models import Label, Detection
+from .models import MLModels, Label, Detection
+
+
+@admin.register(MLModels)
+class MLModelsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'type', 'file')
 
 
 @admin.register(Label)
