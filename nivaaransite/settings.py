@@ -37,13 +37,17 @@ ALLOWED_HOSTS = ['*']
 
 # ADDED REST FRAMEWORK TO INSTALLED_APPS
 INSTALLED_APPS = [
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'rest_framework'
+    'rest_framework',
+    'nivaaranapp',
+    'django_extensions',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -74,7 +78,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "nivaaransite.wsgi.application"
+# WSGI_APPLICATION = "nivaaransite.wsgi.application"
+ASGI_APPLICATION = "nivaaransite.asgi.application"
+
 
 
 # Database
@@ -89,7 +95,6 @@ if DEBUG:
     }
 }
 else:
-
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -144,3 +149,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+PROJECT_URL = "http://13.126.228.253"
