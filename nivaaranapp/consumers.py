@@ -1,12 +1,22 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
+import random
+import json
 
 class DetectionWebSocket(AsyncWebsocketConsumer):
     async def connect(self):
         await self.accept()
     
     async def receive(self,text_data):
-        for i in text_data:
-            await self.send(text_data=i)
+        jsonreturn = {
+            "counts": {
+                "violence": random.randint(1, 11),
+                "weapons": random.randint(1, 11),
+                "intrusion": random.randint(1, 11),
+                "class_labels": random.randint(1, 11)
+            },
+        }
+        data = json.dumps(jsonreturn)
+        await self.send(text_data=data)
     
     async def disconnect(self, close_code):
         await self.close()
