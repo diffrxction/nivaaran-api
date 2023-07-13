@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-y*^_y4&$@3_=1v7@&^-4+7r668=^$!n3e^n11xe80#49lc7cz4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'nivaaranapp',
     'django_extensions',
-    'channels'
+    'channels',
+    'login'
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 PROJECT_URL = "http://13.126.228.253"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
