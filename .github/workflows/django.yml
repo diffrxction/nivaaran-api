@@ -33,7 +33,7 @@ jobs:
         with:
           host: verify.journalchecker.com
           username: ${{ secrets.AWS_EC2_USERNAME }}
-          password: ${{ secrets.AWS_EC2_PASSWORD }}
+          password: admin@10
           source: ./${{ github.sha }}.zip
           target: /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip
 
