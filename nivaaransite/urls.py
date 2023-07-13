@@ -23,5 +23,6 @@ from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('',include('nivaaranapp.urls'))
+    path('',include('nivaaranapp.urls')),
+    path('login/',include('login.urls'))
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
