@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from nivaaranapp.models import MLModels
 from nivaaranapp.serialisers import MlModelSerialiser
 # Create your views here.
+from .detect import detect
 class Index(APIView):
     def get(self,request):
         return Response(
@@ -22,5 +23,14 @@ class GetModels(APIView):
         return Response(
             {
                 "models":data.data
+            }
+        )
+    def post(self,request):
+        img=request.FILES.get('img')
+        prediction = detect(img)
+        print(prediction)
+        return Response(
+            {
+                "models":"ok"
             }
         )
