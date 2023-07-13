@@ -31,7 +31,7 @@ jobs:
         id: step4
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.AWS_EC2_IP }}
+          host: verify.journalchecker.com
           username: ${{ secrets.AWS_EC2_USERNAME }}
           password: ${{ secrets.AWS_EC2_PASSWORD }}
           source: ./${{ github.sha }}.zip
@@ -48,15 +48,7 @@ jobs:
             cd /home/ubuntu/sites/nivaaran-api/backend
             unzip -o /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip/${{ github.sha }}.zip -d /home/${{ secrets.AWS_EC2_USERNAME }}/sites/nivaaran-api/backend
             cd /home/ubuntu/sites/nivaaran-api/
-            source env/bin/activate
-            cd backend
-            python manage.py makemigrations --no-input
-            python manage.py migrate --no-input
-            python manage.py collectstatic --no-input
-            echo "Success!"
-            sudo systemctl restart nivaaran
-            sudo cp -R /home/ubuntu/sites/nivaaran-api/backend/static /var/www
-            sudo systemctl restart nginx
+            
 #           script: |
 #             echo "SSH Connection Successfull"
 #             # Additional commands if needed
