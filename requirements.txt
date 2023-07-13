@@ -50,12 +50,8 @@ service-identity==23.1.0
 six==1.16.0
 sqlparse==0.4.4
 sympy==1.12
-torch==2.0.1+cu117
-torchaudio==2.0.2+cu117
-torchvision==0.15.2+cu117
 tqdm==4.65.0
 Twisted==22.10.0
-twisted-iocpsupport==1.0.3
 txaio==23.1.1
 typing_extensions==4.7.1
 tzdata==2023.3
