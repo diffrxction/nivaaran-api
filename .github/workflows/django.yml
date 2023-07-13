@@ -41,9 +41,9 @@ jobs:
         uses: appleboy/ssh-action@master
         if: steps.step4.outcome == 'success'
         with:
-          host: ${{ secrets.AWS_EC2_IP }}
+          host: verify.journalchecker.com
           username: ${{ secrets.AWS_EC2_USERNAME }}
-          password: ${{ secrets.AWS_EC2_PASSWORD }}
+          password: admin@10
           script: |
             cd /home/ubuntu/sites/nivaaran-api/backend
             unzip -o /home/${{ secrets.AWS_EC2_USERNAME }}/nivaaran/builds/${{ github.sha }}.zip/${{ github.sha }}.zip -d /home/${{ secrets.AWS_EC2_USERNAME }}/sites/nivaaran-api/backend
